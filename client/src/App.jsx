@@ -9,7 +9,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("/api/tenants");
+                const response = await axios.get("http://localhost:5000/api/tenants");
                 setTest(response.data);
             } catch (error) {
                 console.error("Error fetching tenants:", error);
@@ -23,7 +23,14 @@ function App() {
     <>
       <Navbar />
 
-      {test}
+      {test.map((tenant) => (
+        <div key={tenant.id}>
+          <h2>{tenant.full_name}</h2>
+          <h2>{tenant.email}</h2>
+          <h2>{tenant.phone}</h2>
+        </div>
+      ))}
+
     </>
   )
 }
