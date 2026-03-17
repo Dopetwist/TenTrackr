@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router";
 import axios from 'axios';
 import './index.css'
 import Header from './components/Header';
+import Landing from './pages/Landing';
 
 function App() {
   const [ test, setTest ] = useState([]);
@@ -22,9 +23,11 @@ function App() {
 
   return (
     <>
-      <section id="main">
+      <div id="main">
         <Header />
-      </section>
+
+        <Landing />
+      </div>
     </>
   )
 }

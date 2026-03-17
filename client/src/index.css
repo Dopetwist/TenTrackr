@@ -24,16 +24,18 @@ body {
     overflow: hidden;
 }
 
-/* section {
+section {
   min-height: 100vh;
-} */
+  padding: 8rem 6% 2rem;
+}
 
 .header {
     width: 100%;
-    padding: 0.5rem 4%;
+    padding: 1rem 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 0.2rem solid #b8b8b8;
 }
 
 #navbar {
@@ -43,28 +45,66 @@ body {
     align-items: center;
 }
 
+.nav-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
 .get-started {
     background-color: var(--primary-color);
     color: var(--background-color);
     font-size: 1.1rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 2rem;
     border-radius: 0.5rem;
 }
 
-.get-started:hover {
+.get-started:hover,
+.view-demo:hover {
     cursor: pointer;
+}
+
+.view-demo {
+    background-color: #fff;
+    font-size: 1.1rem;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    margin-left: 2rem;
+    box-shadow: 0 0 0.2rem #555;
 }
 
 .app-name h1 {
     color: var(--primary-color);
 }
 
-section#main {
+#main {
     box-shadow: 0 0 0.3rem #555;
     border-radius: 0.3rem;
 }
 
-.nav-link {
-    color: var(--secondary-color);
-    font-weight: 600;
+.hero-texts h2.chaos {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+#hero {
+    display: flex;
+}
+
+.hero-texts p {
+    line-height: 2;
+}
+
+.hero-btns {
+    width: fit-content;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.hero-img {
+    width: 50vw;
+}
+
+.manage {
+    font-size: 3rem;
 }

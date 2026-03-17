@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 function Header() {
     return (
-        <section className="header">
+        <div className="header">
             <div className="app-name">
                 <h1>TenTrackr</h1>
             </div>
@@ -11,7 +11,7 @@ function Header() {
             <Navbar />
 
             <GetStartedButton />
-        </section>
+        </div>
     )
 }
 
