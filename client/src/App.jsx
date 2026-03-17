@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from "react-router";
 import axios from 'axios';
-import Navbar from './components/Navbar';
 import './index.css'
+import Header from './components/Header';
 
 function App() {
   const [ test, setTest ] = useState([]);
@@ -21,16 +22,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
-
-      {test.map((tenant) => (
-        <div key={tenant.id}>
-          <h2>{tenant.full_name}</h2>
-          <h2>{tenant.email}</h2>
-          <h2>{tenant.phone}</h2>
-        </div>
-      ))}
-
+      <section id="main">
+        <Header />
+      </section>
     </>
   )
 }
