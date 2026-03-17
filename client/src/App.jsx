@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from "react-router";
 import axios from 'axios';
-import Navbar from './components/Navbar';
 import './index.css'
+import Header from './components/Header';
+import Landing from './pages/Landing';
 
 function App() {
   const [ test, setTest ] = useState([]);
@@ -9,7 +11,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("/api/tenants");
+                const response = await axios.get("http://localhost:5000/api/tenants");
                 setTest(response.data);
             } catch (error) {
                 console.error("Error fetching tenants:", error);
@@ -21,9 +23,11 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <div id="main">
+        <Header />
 
-      {test}
+        <Landing />
+      </div>
     </>
   )
 }

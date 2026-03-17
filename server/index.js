@@ -13,6 +13,7 @@ const port = 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("client/dist")); // server serves react for deployment
 
 
 // Database Connection
@@ -25,7 +26,8 @@ const db = new Pool({
 // Tenants endpoints
 app.get("/api/tenants", async (req, res) => {
     try {
-        res.json([{id: 1, name: "John Doe"}, {id:2, name: "Jane Smith"}]);
+        const result = await db.query("SELECT * FROM tenant_app.tenants");
+        res.json(result.rows);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
