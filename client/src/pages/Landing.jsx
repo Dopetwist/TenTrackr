@@ -1,4 +1,7 @@
 import GetStartedButton from "../components/GetStartedButton";
+import ProblemSection from "../components/ProblemSection";
+import SolutionSection from "../components/SolutionSection";
+import HowItWorks from "../components/HowItWorks";
 
 function Landing() {
     return (
@@ -6,10 +9,10 @@ function Landing() {
             <section id="hero">
                 <div className="hero-texts">
                     <div> 
-                        <h1><span className="manage">Manage Tenants</span></h1> <br /> 
+                        <h1><span className="manage">Manage <span>Tenants</span></span></h1> <br /> 
                         <h2 className="chaos">Without the Chaos</h2> 
                     </div>
-                    <p> TenTrackr helps landlords and property managers organize tenant records, <br />
+                    <p> TenTrackr helps landlords and property managers organize tenant records,
                         documents, and communication in one simple dashboard 
                     </p>
 
@@ -23,6 +26,12 @@ function Landing() {
                     <img src="/images/hero-image.jpg" className="hero-img" alt="Hero Image" />
                 </div>
             </section>
+
+            <ProblemSection />
+
+            <SolutionSection />
+
+            <HowItWorks />
         </div>
     )
 }
