@@ -21,7 +21,7 @@
 
 body {
     background-color: var(--background-color);
-    padding: 1rem 0;
+    padding-top: 1rem;
     /* overflow: hidden; */
 }
 
@@ -215,6 +215,21 @@ section {
     color: var(--background-color);
     font-size: 1.2rem;
     margin-top: 3rem;
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
     border-radius: 0.5rem;
+}
+
+#footer {
+    background-color: var(--secondary-color);
+    padding: 3rem 5%;
+}
+
+#footer h3 {
+    color: var(--background-color);
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    color: var(--background-color);
+    margin-right: 1rem;
 }

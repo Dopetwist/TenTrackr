@@ -3,6 +3,7 @@ import ProblemSection from "../components/ProblemSection";
 import SolutionSection from "../components/SolutionSection";
 import HowItWorks from "../components/HowItWorks";
 import CallToAction from "../components/CallToAction";
+import Footer from "../components/Footer";
 
 function Landing() {
     return (
@@ -35,6 +36,8 @@ function Landing() {
             <HowItWorks />
 
             <CallToAction />
+
+            <Footer />
         </div>
     )
 }
