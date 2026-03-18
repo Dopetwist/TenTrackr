@@ -16,22 +16,23 @@
     --secondary-color: #1E293B;
     --background-color: #F8FAFC;
     --accent-color: #10B981;
+    --sub-text-color: #555;
 }
 
 body {
     background-color: var(--background-color);
-    padding: 1rem 3%;
-    overflow: hidden;
+    padding-top: 1rem;
+    /* overflow: hidden; */
 }
 
 section {
   min-height: 100vh;
-  padding: 8rem 6% 2rem;
+  padding: 8rem 5% 2rem;
 }
 
 .header {
     width: 100%;
-    padding: 1rem 4%;
+    padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,7 +60,8 @@ section {
 }
 
 .get-started:hover,
-.view-demo:hover {
+.view-demo:hover,
+.cta-btn:hover {
     cursor: pointer;
 }
 
@@ -69,17 +71,17 @@ section {
     padding: 0.5rem 2rem;
     border-radius: 0.5rem;
     margin-left: 2rem;
-    box-shadow: 0 0 0.2rem #555;
+    box-shadow: 0 0 0.2rem var(--sub-text-color);
 }
 
 .app-name h1 {
     color: var(--primary-color);
 }
 
-#main {
-    box-shadow: 0 0 0.3rem #555;
+/* #main {
+    box-shadow: 0 0 0.3rem var(--sub-text-color);
     border-radius: 0.3rem;
-}
+} */
 
 .hero-texts h2.chaos {
     font-size: 2.5rem;
@@ -92,6 +94,7 @@ section {
 }
 
 .hero-texts p {
+    color: var(--sub-text-color);;
     line-height: 2;
 }
 
@@ -103,8 +106,130 @@ section {
 
 .hero-img {
     width: 50vw;
+    border-radius: 2rem;
 }
 
 .manage {
     font-size: 3rem;
+}
+
+.manage span {
+    color: var(--accent-color);
+}
+
+#problem-section {
+    background-color: #5555550a;
+    padding: 3rem 5%;
+}
+
+#problem-section h1,
+#solution-section h1 {
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.problem-section-cards,
+.solution-section-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.problem-card,
+.solution-card {
+    background-color: var(--background-color);
+    padding: 2rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.3rem #b8b8b8;
+}
+
+/* .problem-card .problem-img {
+   
+} */
+
+.problem-card .title,
+.problem-card p {
+    margin-bottom: 2rem;
+}
+
+.problem-card p {
+    color: var(--sub-text-color);;
+    line-height: 1.5;
+}
+
+#solution-section,
+#how-section,
+#cta {
+    padding: 3rem 5%;
+}
+
+.solution-card {
+    align-items: center;
+}
+
+.solution-card p {
+    color: var(--sub-text-color);
+}
+
+.solution-card .title,
+.solution-card p {
+    margin-top: 1rem;
+}
+
+#how-section h2 {
+    margin: 0 0 2rem 2rem;
+    color: var(--accent-color);
+}
+
+#how-section p,
+.icon-box {
+    margin-bottom: 1rem;
+}
+
+#how-section .how-box {
+    margin: 1rem 2rem;
+}
+
+#how-section .how-container {
+    display: flex;
+}
+
+.sub-paragraph {
+    color: var(--sub-text-color);
+}
+
+#cta {
+    background-color: #5555550a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#cta .cta-btn {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    padding: 1rem 3rem;
+    border-radius: 0.5rem;
+}
+
+#footer {
+    background-color: var(--secondary-color);
+    padding: 3rem 5%;
+}
+
+#footer h3 {
+    color: var(--background-color);
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    color: var(--background-color);
+    margin-right: 1rem;
 }
