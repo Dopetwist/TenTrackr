@@ -105,6 +105,7 @@ section {
 
 .hero-img {
     width: 50vw;
+    border-radius: 2rem;
 }
 
 .manage {
@@ -159,7 +160,8 @@ section {
     line-height: 1.5;
 }
 
-#solution-section {
+#solution-section,
+#how-section {
     padding: 3rem 5%;
 }
 
@@ -174,4 +176,26 @@ section {
 .solution-card .title,
 .solution-card p {
     margin-top: 1rem;
+}
+
+#how-section h2 {
+    margin: 0 0 2rem 2rem;
+    color: var(--accent-color);
+}
+
+#how-section p,
+.icon-box {
+    margin-bottom: 1rem;
+}
+
+#how-section .how-box {
+    margin: 1rem 2rem;
+}
+
+#how-section .how-container {
+    display: flex;
+}
+
+.sub-paragraph {
+    color: var(--sub-text-color);
 }

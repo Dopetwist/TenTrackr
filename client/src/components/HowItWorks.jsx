@@ -3,26 +3,37 @@ function HowItWorks() {
         <div id="how-section">
             <h2>How It Works</h2>
 
-            <div className="how-box">
-                <h3>Step 1</h3>
+            <div className="how-container">
+                <div className="how-box">
+                    <div className="icon-box">
+                        <h4>(Placeholder for icon)</h4>
+                        <h3>Step 1</h3>
+                    </div>
 
-                <p>Register Property and Tenant</p>
+                    <p>Register Property and Tenant</p>
 
-                <p>Add tenant details including property, rent info and documents.</p>
-            </div>
-            <div className="how-box">
-                <h3>Step 2</h3>
+                    <p className="sub-paragraph">Add tenant details including property, rent info and documents.</p>
+                </div>
+                <div className="how-box">
+                    <div className="icon-box">
+                        <h4>(Placeholder for icon)</h4>
+                        <h3>Step 2</h3>
+                    </div>
 
-                <p>Manage Records</p>
+                    <p>Manage Records</p>
 
-                <p>View, update and organize tenants by property.</p>
-            </div>
-            <div className="how-box">
-                <h3>Step 3</h3>
+                    <p className="sub-paragraph">View, update and organize tenants by property.</p>
+                </div>
+                <div className="how-box">
+                    <div className="icon-box">
+                        <h4>(Placeholder for icon)</h4>
+                        <h3>Step 3</h3>
+                    </div>
 
-                <p>Communicate Easily</p>
+                    <p>Communicate Easily</p>
 
-                <p>Send emails to tenants individually or in bulk.</p>
+                    <p className="sub-paragraph">Send emails to tenants individually or in bulk.</p>
+                </div>
             </div>
         </div>
     )
