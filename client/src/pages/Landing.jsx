@@ -2,6 +2,7 @@ import GetStartedButton from "../components/GetStartedButton";
 import ProblemSection from "../components/ProblemSection";
 import SolutionSection from "../components/SolutionSection";
 import HowItWorks from "../components/HowItWorks";
+import CallToAction from "../components/CallToAction";
 
 function Landing() {
     return (
@@ -32,6 +33,8 @@ function Landing() {
             <SolutionSection />
 
             <HowItWorks />
+
+            <CallToAction />
         </div>
     )
 }
