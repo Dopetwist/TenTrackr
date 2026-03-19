@@ -21,7 +21,7 @@
 
 body {
     background-color: var(--background-color);
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
     /* overflow: hidden; */
 }
 
@@ -33,6 +33,7 @@ section {
 .header {
     width: 100%;
     padding: 1rem 5%;
+    margin-top: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -216,6 +217,62 @@ section {
     font-size: 1.2rem;
     margin-top: 3rem;
     padding: 1rem 3rem;
+    border-radius: 0.5rem;
+}
+
+.sidebar {
+    width: 20%;
+    /* background-color: green; */
+    min-height: 100vh;
+    padding: 2rem;
+    border-right: 0.3rem solid var(--sub-text-color);
+}
+
+.sidebar h1 {
+    margin-bottom: 2rem;
+}
+
+.sidebar-contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-item {
+    margin-bottom: 2rem;
+}
+
+#dashboard {
+    min-height: 100vh;
+    /* background-color: red; */
+    /* padding: 1rem; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-container {
+    width: 80%;
+    /* background-color: purple; */
+    padding: 2rem;
+}
+
+.dashboard-container h1 {
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-container .tenants-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tenants-box .inner-box {
+    background-color: var(--background-color);
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.1rem solid var(--sub-text-color);
     border-radius: 0.5rem;
 }
 
