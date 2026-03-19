@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import GetStartedButton from "../components/GetStartedButton";
 import ProblemSection from "../components/ProblemSection";
 import SolutionSection from "../components/SolutionSection";
@@ -8,6 +9,8 @@ import Footer from "../components/Footer";
 function Landing() {
     return (
         <div>
+            <Header />
+            
             <section id="hero">
                 <div className="hero-texts">
                     <div> 
