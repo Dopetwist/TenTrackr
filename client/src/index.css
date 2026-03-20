@@ -276,6 +276,57 @@ section {
     border-radius: 0.5rem;
 }
 
+.tenants {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 3rem;
+}
+
+.tenants h2 {
+    margin-bottom: 3rem;
+}
+
+.search-con {
+    width: 30%;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+    border: 0.1rem solid var(--sub-text-color);
+    border-radius:  0.3rem;
+    overflow: hidden;
+}
+
+.search-con input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    background: transparent;
+}
+
+.tenants-btns button {
+    color: var(--background-color);
+    padding: 0.5rem 2rem;
+    margin: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.tenants-btns button:hover {
+    cursor: pointer;
+}
+
+.tenants-btns button#reg-tenant {
+    background-color: var(--accent-color);
+}
+
+.tenants-btns button#send-email {
+    background-color: var(--primary-color);
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 3rem 5%;

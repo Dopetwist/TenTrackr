@@ -10,13 +10,13 @@ import RegisterTenant from './pages/RegisterTenant';
 import EmailPage from './pages/EmailPage';
 
 function App() {
-  const [ test, setTest ] = useState([]);
+  const [ tenants, setTenants ] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/api/tenants");
-                setTest(response.data);
+                setTenants(response.data);
             } catch (error) {
                 console.error("Error fetching tenants:", error);
             }
@@ -46,7 +46,7 @@ function App() {
 
           <Route
             path='/properties'
-            element={<PropertyAccordion />}
+            element={<PropertyAccordion tenants={tenants} />}
           />
 
           <Route
