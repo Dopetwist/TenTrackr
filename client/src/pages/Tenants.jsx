@@ -16,9 +16,7 @@ function Tenants() {
                 <button id="send-email">Send Email</button>
             </div>
 
-            <div>
-                <PropertyAccordion />
-            </div>
+            <PropertyAccordion />
         </div>
     )
 }

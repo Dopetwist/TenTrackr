@@ -17,6 +17,7 @@
     --background-color: #F8FAFC;
     --accent-color: #10B981;
     --sub-text-color: #555;
+    --delete-color: #EF4444;
 }
 
 body {
@@ -325,6 +326,60 @@ section {
 
 .tenants-btns button#send-email {
     background-color: var(--primary-color);
+}
+
+#property-container {
+    width: 90%;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+
+.property-item {
+    background-color: var(--background-color);
+    padding: 1rem;
+    margin: 1rem;
+    border: 0.1rem solid var(--sub-text-color);
+    border-radius: 0.5rem;
+}
+
+.property-item h3 {
+    width: fit-content;
+}
+
+.tenant-item {
+    background-color: var(--background-color);
+    padding: 0.5rem 2rem;
+    margin: 0.5rem;
+    border: 0.07rem solid var(--sub-text-color);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phone {
+    color: var(--sub-text-color);
+    font-size: 0.8rem;
+}
+
+.action-btns button {
+    color: var(--background-color);
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+}
+
+.action-btns button:hover {
+    cursor: pointer;
+}
+
+.view-btn {
+    background-color: var(--primary-color);
+}
+
+.delete-btn {
+    background-color: var(--delete-color);
 }
 
 #footer {
