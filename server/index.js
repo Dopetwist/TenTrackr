@@ -52,7 +52,12 @@ app.delete("/api/tenants/:id", async (req, res) => {
 
 // Properties endpoints
 app.get("/api/properties", async (req, res) => {
-
+    try {
+        const result = await db.query("SELECT * FROM tenant_app.properties");
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 app.post("/api/properties", async (req, res) => {
