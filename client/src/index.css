@@ -324,7 +324,7 @@ section {
     background-color: var(--accent-color);
 }
 
-.tenants-btns button#send-email {
+button.send-email {
     background-color: var(--primary-color);
 }
 
@@ -363,14 +363,16 @@ section {
     font-size: 0.8rem;
 }
 
-.action-btns button {
+.action-btns button,
+.details-btns button {
     color: var(--background-color);
     padding: 0.3rem 1rem;
     border-radius: 0.3rem;
     margin-left: 1rem;
 }
 
-.action-btns button:hover {
+.action-btns button:hover,
+.details-btns button:hover {
     cursor: pointer;
 }
 
@@ -380,6 +382,38 @@ section {
 
 .delete-btn {
     background-color: var(--delete-color);
+}
+
+#details-container {
+    min-height: 100vh;
+    padding: 2rem 4%;
+}
+
+.info-section {
+    margin: 3rem 0;
+}
+
+.info-section h1 {
+    margin-bottom: 1rem;
+}
+
+.info-section p {
+    border-bottom: 0.1rem solid var(--sub-text-color);
+    padding: 1rem 0;
+}
+
+.docs-header {
+    margin-bottom: 1rem;
+}
+
+.name-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-btn {
+    background-color: var(--accent-color);
 }
 
 #footer {
