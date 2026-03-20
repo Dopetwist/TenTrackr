@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router";
-import axios from 'axios';
 import './index.css';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
@@ -8,22 +6,9 @@ import Tenants from './pages/Tenants';
 import PropertyAccordion from './components/PropertyAccordion';
 import RegisterTenant from './pages/RegisterTenant';
 import EmailPage from './pages/EmailPage';
+import TenantDetails from "./pages/TenantDetails";
 
 function App() {
-  const [ tenants, setTenants ] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/tenants");
-                setTenants(response.data);
-            } catch (error) {
-                console.error("Error fetching tenants:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
   return (
     <>
@@ -45,8 +30,13 @@ function App() {
           />
 
           <Route
+            path='/tenantdetails'
+            element={<TenantDetails />}
+          />
+
+          <Route
             path='/properties'
-            element={<PropertyAccordion tenants={tenants} />}
+            element={<PropertyAccordion />}
           />
 
           <Route

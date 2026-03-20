@@ -13,12 +13,10 @@ function Tenants() {
             </div>
             <div className="tenants-btns">
                 <button id="reg-tenant">Register Tenant</button>
-                <button id="send-email">Send Email</button>
+                <button className="send-email">Send Email</button>
             </div>
 
-            <div>
-                <PropertyAccordion />
-            </div>
+            <PropertyAccordion />
         </div>
     )
 }
