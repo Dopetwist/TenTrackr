@@ -416,6 +416,84 @@ button.send-email {
     background-color: var(--accent-color);
 }
 
+#register-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0 1rem;
+}
+
+.register-container {
+    width: 40%;
+    margin-top: 2rem;
+}
+
+.register-container form {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.register-container form input {
+    margin: 0.5rem 0 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.register-container form select {
+    margin: 0.5rem 0 1rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.inner-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.small-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#upload-doc {
+    border: 0.1rem dashed var(--sub-text-color);
+}
+
+.register-btns {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.register-btns button {
+    margin: 1rem 0.5rem 0 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+}
+
+.register-btns button:hover {
+    cursor: pointer;
+}
+
+#save {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+#cancel {
+    background-color: var(--background-color);
+    border: 0.05rem solid var(--sub-text-color);
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 3rem 5%;
