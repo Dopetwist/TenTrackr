@@ -7,7 +7,7 @@
     text-decoration: none;
     scroll-behavior: smooth;
     border: none;
-    outline: none;
+    outline-color: var(--primary-color);
     font-family: "Inter", sans-serif;
 }
 
@@ -302,11 +302,12 @@ section {
     overflow: hidden;
 }
 
-.search-con input {
+.search-con #search {
     width: 100%;
     padding: 0.5rem 1rem;
     margin-left: 1rem;
     background: transparent;
+    outline: none;
 }
 
 .tenants-btns button {
@@ -492,6 +493,80 @@ button.send-email {
 #cancel {
     background-color: var(--background-color);
     border: 0.05rem solid var(--sub-text-color);
+}
+
+.email-container {
+    background-color: #f4f8fc;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 0 0.2rem var(--sub-text-color);
+    border-radius: 0.5rem;
+}
+
+#email-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.email-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-head p {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#email-section form {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #5555553a;
+}
+
+#email-section form input,
+#email-section form textarea {
+    border: 0.1rem solid #5555553a;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 1rem;
+}
+
+#email-section form textarea {
+    resize: none;
+}
+
+.radio-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.inner-radio input {
+    margin-right: 0.5rem;
+}
+
+button#send {
+    background-color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--background-color);
+    padding: 0.7rem 0;
+    border-radius: 0.3rem;
+}
+
+button#send:hover {
+    cursor: pointer;
 }
 
 #footer {

@@ -20,7 +20,12 @@ function Tenants() {
                 >
                     Register Tenant
                 </button>
-                <button className="send-email">Send Email</button>
+                <button 
+                className="send-email"
+                onClick={() => navigate("/emails")}
+                >
+                    Send Email
+                </button>
             </div>
 
             <PropertyAccordion />
