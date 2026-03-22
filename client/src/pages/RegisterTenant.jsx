@@ -4,7 +4,7 @@ function RegisterTenant() {
             <h2> Register Tenant </h2>
 
             <div className="register-container">
-                <form action={"#"} method="POST">
+                <form className="register-form">
 
                     <label htmlFor="full-name">Full Name:</label>
                     <input type="text" name="full_name" id="full-name" placeholder="Enter full name" />

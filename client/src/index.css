@@ -223,10 +223,9 @@ section {
 
 .sidebar {
     width: 20%;
-    /* background-color: green; */
     min-height: 100vh;
     padding: 2rem;
-    border-right: 0.3rem solid var(--sub-text-color);
+    border-right: 0.2rem solid var(--sub-text-color);
 }
 
 .sidebar h1 {
@@ -348,6 +347,25 @@ button.send-email {
     width: fit-content;
 }
 
+.property-item h3:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.loading {
+    color: var(--sub-text-color);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.your-props {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 2rem 1rem;
+}
+
 .tenant-item {
     background-color: var(--background-color);
     padding: 0.5rem 2rem;
@@ -465,6 +483,10 @@ button.send-email {
     flex-direction: column;
 }
 
+.small-input input {
+    width: 100%;
+}
+
 #upload-doc {
     border: 0.1rem dashed var(--sub-text-color);
 }
@@ -567,6 +589,37 @@ button#send {
 
 button#send:hover {
     cursor: pointer;
+}
+
+#settings-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#settings-section h2 {
+    margin-bottom: 2rem;
+}
+
+.settings-container {
+    width: 60%;
+    background-color: var(--background-color);
+    padding: 2rem 1rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.settings-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.settings-title {
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 #footer {

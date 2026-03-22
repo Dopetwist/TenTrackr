@@ -1,15 +1,12 @@
-import { useNavigate } from "react-router";
+/* import { useNavigate } from "react-router"; */
+import { Link } from "react-router";
 
 function GetStartedButton() {
-    const navigate = useNavigate();
-
     return (
         <div>
-            <button className="get-started"
-            onClick={() => navigate("/dashboard")}
-            > 
-                Get Started 
-            </button>
+            <Link to={"/dashboard"}>
+                <button className="get-started">Get Started</button>
+            </Link>
         </div>
     )
 }
