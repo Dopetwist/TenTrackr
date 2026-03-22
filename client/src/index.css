@@ -569,6 +569,37 @@ button#send:hover {
     cursor: pointer;
 }
 
+#settings-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#settings-section h2 {
+    margin-bottom: 2rem;
+}
+
+.settings-container {
+    width: 60%;
+    background-color: var(--background-color);
+    padding: 2rem 1rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.settings-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.settings-title {
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 3rem 5%;
