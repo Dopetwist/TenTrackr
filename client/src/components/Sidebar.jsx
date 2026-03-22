@@ -3,8 +3,8 @@ import { Link } from "react-router";
 function Sidebar() {
     return (
         <div className="sidebar">
-            <h1>TenTrackr</h1>
-
+            <Link to={"/"}><h1>TenTrackr</h1></Link>
+                
             <div className="sidebar-contents">
                 <Link smooth to={"/dashboard"} className="sidebar-item">Dashboard</Link>
                 <Link smooth to={"/tenants"} className="sidebar-item">Tenants</Link>

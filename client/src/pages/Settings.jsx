@@ -16,6 +16,9 @@ function Settings() {
                     <p className="settings-title">Change Password:</p>
                     <p>1234567890 (pencil edit icon)</p>
                 </div>
+                <div className="settings-box">
+                    <p className="settings-title">Delete Account</p>
+                </div>
             </div>
         </div>
     )

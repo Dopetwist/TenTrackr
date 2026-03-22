@@ -7,7 +7,7 @@ function AppLayout() {
     <div style={{ display: "flex" }}>
       <Sidebar />
 
-      <div style={{ flex: 1, padding: "1rem" }}>
+      <div style={{ flex: 1 }}>
         <Outlet />
       </div>
     </div>

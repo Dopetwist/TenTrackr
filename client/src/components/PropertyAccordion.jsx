@@ -49,8 +49,13 @@ function PropertyAccordion() {
 
     return (
         <div id="property-container">
+
+            {properties.length > 0 && (
+                <p className="your-props">Your Properties</p>
+            )}
+
             {properties.length === 0 ? (
-                <p>Loading properties...</p>
+                <p className="loading">Loading properties...</p>
             ) : (
                     properties.map(property => (
                         <div key={property.id} className="property-item">
