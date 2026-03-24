@@ -13,8 +13,7 @@ function Settings() {
                     <p>john@gmail.com (pencil edit icon)</p>
                 </div>
                 <div className="settings-box">
-                    <p className="settings-title">Change Password:</p>
-                    <p>1234567890 (pencil edit icon)</p>
+                    <p className="settings-title">Change Password</p>
                 </div>
                 <div className="settings-box">
                     <p className="settings-title">Delete Account</p>
