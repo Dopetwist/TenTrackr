@@ -1,5 +1,4 @@
 import express from "express";
-import axios from "axios";
 import env from "dotenv";
 import cors from "cors";
 import pkg from "pg";
@@ -11,6 +10,7 @@ env.config();
 const app = express();
 const port = 5000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.static("client/dist")); // server serves react for deployment
@@ -24,6 +24,8 @@ const db = new Pool({
 
 
 // Tenants endpoints
+
+// get all tenants details
 app.get("/api/tenants", async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM tenant_app.tenants");
@@ -33,6 +35,7 @@ app.get("/api/tenants", async (req, res) => {
     }
 });
 
+// get a single tenant details
 app.get("/api/tenants/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -55,20 +58,47 @@ app.get("/api/tenants/:id", async (req, res) => {
     }
 });
 
+// register a new tenant
 app.post("/api/tenants", async (req, res) => {
+    try {
+        const { 
+            full_name, 
+            email, 
+            phone,
+            room,
+            rent,
+            move_in,
+            lease_end
+        } = req.body;
 
+        const result = await db.query(
+            `INSERT INTO tenant_app.tenants 
+                (full_name, email, phone, room_number, rent_amount, move_in_date, lease_end)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
+             RETURNING *`,
+            [full_name, email, phone, room, rent, move_in, lease_end]
+        );
+
+        res.status(201).json(result.rows[0]); // return created tenant
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
+// edit a new tenant
 app.put("/api/tenants/:id", async (req, res) => {
 
 });
 
+// delete a tenant
 app.delete("/api/tenants/:id", async (req, res) => {
 
 });
 
 
 // Properties endpoints
+
+// get all properties
 app.get("/api/properties", async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM tenant_app.properties");
@@ -78,6 +108,7 @@ app.get("/api/properties", async (req, res) => {
     }
 });
 
+// add properties
 app.post("/api/properties", async (req, res) => {
 
 });

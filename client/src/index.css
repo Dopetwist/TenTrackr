@@ -352,7 +352,8 @@ button.send-email {
     cursor: pointer;
 }
 
-.loading {
+.loading,
+.ten-details-loading {
     color: var(--sub-text-color);
     font-size: 1.2rem;
     text-align: center;

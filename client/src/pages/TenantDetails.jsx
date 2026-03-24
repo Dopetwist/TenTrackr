@@ -20,8 +20,7 @@ function TenantDetails() {
         fetchTenant();
     }, [id]);
 
-    console.log("Tenant details:", tenant);
-    if (!tenant) return <p>Loading...</p>;
+    if (!tenant) return <p className="ten-details-loading">Loading...</p>;
 
     return (
         <div id="details-container">
