@@ -77,7 +77,7 @@ function PropertyAccordion() {
                                                 <div className="action-btns">
                                                     <button 
                                                     className="view-btn"
-                                                    onClick={() => navigate("/tenantdetails")}
+                                                    onClick={() => navigate(`/tenants/${tenant.id}`)}
                                                     >
                                                         View Details
                                                     </button>

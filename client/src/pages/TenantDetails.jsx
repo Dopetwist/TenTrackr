@@ -1,11 +1,35 @@
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 function TenantDetails() {
+    const { id } = useParams();
+
+    const [tenant, setTenant] = useState(null);
+
+    useEffect(() => {
+        const fetchTenant = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/tenants/${id}`);
+                setTenant(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchTenant();
+    }, [id]);
+
+    console.log("Tenant details:", tenant);
+    if (!tenant) return <p>Loading...</p>;
+
     return (
         <div id="details-container">
             <h2>Tenant Details</h2>
 
             <div className="info-section">
                 <div className="name-btns">
-                    <h1 className="name">John Doe</h1>
+                    <h1 className="name">{tenant.full_name}</h1>
 
                     <div className="details-btns">
                         <button className="edit-btn">Edit Tenant</button>
@@ -14,13 +38,13 @@ function TenantDetails() {
                     </div>
                 </div>
 
-                <p>Property: </p>
-                <p>Room: </p>
-                <p>Email: </p>
-                <p>Phone: </p>
-                <p>Rent: </p>
-                <p>Move-in Date: </p>
-                <p>Lease End: </p>
+                <p>Property: <span>{tenant.property_name}</span></p>
+                <p>Room: <span>{tenant.room_number}</span></p>
+                <p>Email: <span>{tenant.email}</span></p>
+                <p>Phone: <span>{tenant.phone}</span></p>
+                <p>Rent: <span>{tenant.rent_amount}</span></p>
+                <p>Move-in Date: <span>{tenant.move_in_date}</span></p>
+                <p>Lease End: <span>{tenant.lease_end}</span></p>
             </div>
 
             <div className="document-section">

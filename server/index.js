@@ -34,7 +34,25 @@ app.get("/api/tenants", async (req, res) => {
 });
 
 app.get("/api/tenants/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        const result = await db.query(
+            `SELECT * FROM tenant_app.tenants 
+            LEFT JOIN tenant_app.properties
+            ON tenant_app.tenants.property_id = tenant_app.properties.id
+            WHERE tenant_app.tenants.id = $1`, 
+        [id]);
+
+        // If tenant doesn't exist
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Tenant not found!" });
+        }
+
+        res.json(result.rows[0]); // return single tenant
+    } catch (error) {
+        return res.status(500).json({error: error.message});
+    }
 });
 
 app.post("/api/tenants", async (req, res) => {
