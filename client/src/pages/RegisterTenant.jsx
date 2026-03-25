@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Toast from "../components/Toast";
 
 function RegisterTenant() {
+    const [ properties, setProperties ] = useState([]);
+
     const navigate = useNavigate();
 
      const [ formData, setFormData ] = useState({
@@ -17,7 +19,7 @@ function RegisterTenant() {
         lease_end: ""
     });
 
-    const [toast, setToast] = useState(null); // toast state
+    const [ toast, setToast ] = useState(null); // toast state
 
     const handleChange = (e) => {
         setFormData({
@@ -38,7 +40,7 @@ function RegisterTenant() {
                 type: "success"
             });
 
-            // Optional: clear form
+            // Clear form
             setFormData({ 
                 full_name: "", 
                 email: "", 
@@ -63,6 +65,20 @@ function RegisterTenant() {
             console.error(err.response?.data || err.message);
         }
     };
+
+    // Fetch All properties from backend database
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/properties");
+                setProperties(res.data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        fetchProperties();
+    }, []);
 
     return (
         <div id="register-section">
@@ -113,9 +129,16 @@ function RegisterTenant() {
                     required
                     >
                         <option value={""}>-- Select Property --</option>
-                        <option value={1}>Greenvalley Apartment</option>
-                        <option value={2}>RisingStars Suites</option>
-                        <option value={3}>DeCape Apartment</option>
+                        {properties.length === 0 ? (
+                            <option value={""} disabled>Loading properties...</option>
+                        ) : (
+                            properties.map(prop => (
+                                <option key={prop.id} value={prop.id}>
+                                    {prop.property_name}
+                                </option>
+                            ))
+                        )}
+
                     </select>
 
                     <div className="inner-div">
