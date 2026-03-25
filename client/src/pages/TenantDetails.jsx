@@ -7,6 +7,15 @@ function TenantDetails() {
 
     const [tenant, setTenant] = useState(null);
 
+    const formatDate = (date) => {
+        return new Date(date)
+            .toLocaleDateString("en-US", { 
+                year: "numeric",
+                month: "long",
+                day: "numeric" 
+            });
+    };
+
     useEffect(() => {
         const fetchTenant = async () => {
             try {
@@ -42,8 +51,8 @@ function TenantDetails() {
                 <p>Email: <span>{tenant.email}</span></p>
                 <p>Phone: <span>{tenant.phone}</span></p>
                 <p>Rent: <span>{tenant.rent_amount}</span></p>
-                <p>Move-in Date: <span>{tenant.move_in_date}</span></p>
-                <p>Lease End: <span>{tenant.lease_end}</span></p>
+                <p>Move-in Date: <span>{formatDate(tenant.move_in_date)}</span></p>
+                <p>Lease End: <span>{formatDate(tenant.lease_end)}</span></p>
             </div>
 
             <div className="document-section">
