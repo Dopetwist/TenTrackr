@@ -623,6 +623,43 @@ button#send:hover {
     font-weight: 500;
 }
 
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: 500;
+    z-index: 999;
+    animation: slideIn 0.3s ease;
+}
+
+/* Types */
+.toast.success {
+    background-color: #28a745;
+}
+
+.toast.error {
+    background-color: #dc3545;
+}
+
+.toast.info {
+    background-color: #007bff;
+}
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 3rem 5%;

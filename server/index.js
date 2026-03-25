@@ -65,6 +65,7 @@ app.post("/api/tenants", async (req, res) => {
             full_name, 
             email, 
             phone,
+            properties,
             room,
             rent,
             move_in,
@@ -73,10 +74,10 @@ app.post("/api/tenants", async (req, res) => {
 
         const result = await db.query(
             `INSERT INTO tenant_app.tenants 
-                (full_name, email, phone, room_number, rent_amount, move_in_date, lease_end)
-             VALUES ($1, $2, $3, $4, $5, $6, $7)
+                (full_name, email, phone, property_id, room_number, rent_amount, move_in_date, lease_end)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
              RETURNING *`,
-            [full_name, email, phone, room, rent, move_in, lease_end]
+            [full_name, email, phone, properties, room, rent, move_in, lease_end]
         );
 
         res.status(201).json(result.rows[0]); // return created tenant
