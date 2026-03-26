@@ -5,6 +5,7 @@ import Toast from "../components/Toast";
 
 function RegisterTenant() {
     const [ properties, setProperties ] = useState([]);
+    const [ currencies, setCurrencies ] = useState([]);
 
     const navigate = useNavigate();
 
@@ -14,6 +15,7 @@ function RegisterTenant() {
         phone: "",
         properties: "",
         room: "",
+        currencies: "",
         rent: "",
         move_in: "",
         lease_end: ""
@@ -46,6 +48,7 @@ function RegisterTenant() {
                 email: "", 
                 phone: "",
                 room: "",
+                currencies: "",
                 rent: "",
                 move_in: "",
                 lease_end: ""
@@ -78,6 +81,20 @@ function RegisterTenant() {
         }
 
         fetchProperties();
+    }, []);
+
+    // Fetch currencies from backend database
+    useEffect(() => {
+        const fetchCurrencies = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/currencies");
+                setCurrencies(res.data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        fetchCurrencies();
     }, []);
 
     return (
@@ -156,15 +173,23 @@ function RegisterTenant() {
 
                         <div className="small-input">
                             <label htmlFor="rent-amount">Rent Amount:</label>
-                            <input 
-                                type="number" 
-                                name="rent" 
-                                id="rent-amount" 
-                                placeholder="Enter rent amount"
-                                value={formData.rent}
-                                onChange={handleChange}
-                                required
-                            />
+                            <div className="amount-con">
+                                <select name="currencies" id="currencies">
+                                    <option value={"$"}>$</option>
+                                    <option value={"€"}>€</option>
+                                    <option value={"£"}>£</option>
+                                    <option value={"₦"} selected>₦</option>
+                                </select>
+                                <input 
+                                    type="number" 
+                                    name="rent" 
+                                    id="rent-amount" 
+                                    placeholder="Enter rent amount"
+                                    value={formData.rent}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="small-input">

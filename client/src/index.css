@@ -660,6 +660,14 @@ button#send:hover {
     }
 }
 
+.amount-con {
+    display: flex;
+}
+
+#currencies:hover {
+    cursor: pointer;
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 3rem 5%;
