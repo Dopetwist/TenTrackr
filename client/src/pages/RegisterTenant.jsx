@@ -1,15 +1,27 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
+import Toast from "../components/Toast";
 
 function RegisterTenant() {
+    const [ properties, setProperties ] = useState([]);
+    const [ currencies, setCurrencies ] = useState([]);
+
+    const navigate = useNavigate();
+
      const [ formData, setFormData ] = useState({
         full_name: "",
         email: "",
         phone: "",
+        properties: "",
         room: "",
+        currencies: "",
         rent: "",
         move_in: "",
         lease_end: ""
     });
+
+    const [ toast, setToast ] = useState(null); // toast state
 
     const handleChange = (e) => {
         setFormData({
@@ -24,23 +36,66 @@ function RegisterTenant() {
         try {
             const res = await axios.post("http://localhost:5000/api/tenants", formData);
 
-            console.log("Tenant created:", res.data);
+            // Show success toast
+            setToast({
+                message: "Tenant registered successfully!",
+                type: "success"
+            });
 
-            // Optional: clear form
+            // Clear form
             setFormData({ 
                 full_name: "", 
                 email: "", 
                 phone: "",
                 room: "",
+                currencies: "",
                 rent: "",
                 move_in: "",
                 lease_end: ""
             });
 
+            // Redirect to tenant details page after short delay
+            setTimeout(() => {
+                navigate(`/tenants/${res.data.id}`);
+            }, 2000);
+
         } catch (err) {
+            // Show error toast
+            setToast({
+                message: err.response?.data?.error || "Something went wrong",
+                type: "error"
+            });
             console.error(err.response?.data || err.message);
         }
     };
+
+    // Fetch All properties from backend database
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/properties");
+                setProperties(res.data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        fetchProperties();
+    }, []);
+
+    // Fetch currencies from backend database
+    useEffect(() => {
+        const fetchCurrencies = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/currencies");
+                setCurrencies(res.data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        fetchCurrencies();
+    }, []);
 
     return (
         <div id="register-section">
@@ -57,6 +112,7 @@ function RegisterTenant() {
                         placeholder="Enter full name"
                         value={formData.full_name}
                         onChange={handleChange}
+                        required
                     />
 
                     <label htmlFor="email">Email:</label>
@@ -67,6 +123,7 @@ function RegisterTenant() {
                         placeholder="Enter a valid email address"
                         value={formData.email}
                         onChange={handleChange}
+                        required
                     />
 
                     <label htmlFor="phone-number">Phone Number:</label>
@@ -76,15 +133,29 @@ function RegisterTenant() {
                         id="phone-number" 
                         placeholder="Enter phone number"
                         value={formData.phone}
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        required
                     />
 
                     <label htmlFor="properties">Choose a property: </label>
-                    <select name="properties" id="properties">
+                    <select 
+                    name="properties" 
+                    id="properties"
+                    value={formData.properties}
+                    onChange={handleChange}
+                    required
+                    >
                         <option value={""}>-- Select Property --</option>
-                        <option value={"greenvalley"}>Greenvalley Apartment</option>
-                        <option value={"risingstars"}>RisingStars Suites</option>
-                        <option value={"decape"}>DeCape Apartment</option>
+                        {properties.length === 0 ? (
+                            <option value={""} disabled>Loading properties...</option>
+                        ) : (
+                            properties.map(prop => (
+                                <option key={prop.id} value={prop.id}>
+                                    {prop.property_name}
+                                </option>
+                            ))
+                        )}
+
                     </select>
 
                     <div className="inner-div">
@@ -96,19 +167,29 @@ function RegisterTenant() {
                                 placeholder="Enter room number"
                                 value={formData.room}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className="small-input">
                             <label htmlFor="rent-amount">Rent Amount:</label>
-                            <input 
-                                type="number" 
-                                name="rent" 
-                                id="rent-amount" 
-                                placeholder="Enter rent amount"
-                                value={formData.rent}
-                                onChange={handleChange} 
-                            />
+                            <div className="amount-con">
+                                <select name="currencies" id="currencies">
+                                    <option value={"$"}>$</option>
+                                    <option value={"€"}>€</option>
+                                    <option value={"£"}>£</option>
+                                    <option value={"₦"} selected>₦</option>
+                                </select>
+                                <input 
+                                    type="number" 
+                                    name="rent" 
+                                    id="rent-amount" 
+                                    placeholder="Enter rent amount"
+                                    value={formData.rent}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="small-input">
@@ -119,6 +200,7 @@ function RegisterTenant() {
                                 id="move-in"
                                 value={formData.move_in}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
 
@@ -129,7 +211,8 @@ function RegisterTenant() {
                                 name="lease_end" 
                                 id="lease-end"
                                 value={formData.lease_end}
-                                onChange={handleChange} 
+                                onChange={handleChange}
+                                required
                             />
                         </div>
                     </div>
@@ -138,10 +221,29 @@ function RegisterTenant() {
                     <input type="file" id="upload-doc" />
 
                     <div className="register-btns">
-                        <button type="submit" id="save">Save Tenant</button>
-                        <button id="cancel">Cancel</button>
+                        <button 
+                        type="submit" 
+                        id="save"
+                        >
+                            Save Tenant
+                        </button>
+                        <button 
+                        id="cancel"
+                        onClick={() => navigate("/dashboard")}
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </form>
+
+                {/* Render Toast */}
+                {toast && (
+                    <Toast
+                        message={toast.message}
+                        type={toast.type}
+                        onClose={() => setToast(null)}
+                    />
+                )}
             </div>
         </div>
     )

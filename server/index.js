@@ -65,7 +65,9 @@ app.post("/api/tenants", async (req, res) => {
             full_name, 
             email, 
             phone,
+            properties,
             room,
+            currencies,
             rent,
             move_in,
             lease_end
@@ -73,10 +75,10 @@ app.post("/api/tenants", async (req, res) => {
 
         const result = await db.query(
             `INSERT INTO tenant_app.tenants 
-                (full_name, email, phone, room_number, rent_amount, move_in_date, lease_end)
-             VALUES ($1, $2, $3, $4, $5, $6, $7)
+                (full_name, email, phone, property_id, room_number, rent_amount, move_in_date, lease_end)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
              RETURNING *`,
-            [full_name, email, phone, room, rent, move_in, lease_end]
+            [full_name, email, phone, properties, room, `${currencies}${rent}`, move_in, lease_end]
         );
 
         res.status(201).json(result.rows[0]); // return created tenant
@@ -94,6 +96,16 @@ app.put("/api/tenants/:id", async (req, res) => {
 app.delete("/api/tenants/:id", async (req, res) => {
 
 });
+
+// Get Currencies
+/* app.get("/api/currencies", async (req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM tenant_app.currencies");
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}); */
 
 
 // Properties endpoints
