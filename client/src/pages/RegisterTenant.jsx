@@ -5,17 +5,16 @@ import Toast from "../components/Toast";
 
 function RegisterTenant() {
     const [ properties, setProperties ] = useState([]);
-    const [ currencies, setCurrencies ] = useState([]);
 
     const navigate = useNavigate();
 
-     const [ formData, setFormData ] = useState({
+    const [ formData, setFormData ] = useState({
         full_name: "",
         email: "",
         phone: "",
-        properties: "",
+        property: "",
         room: "",
-        currencies: "",
+        currency: "NGN",
         rent: "",
         move_in: "",
         lease_end: ""
@@ -42,13 +41,14 @@ function RegisterTenant() {
                 type: "success"
             });
 
-            // Clear form
+            // Clear form on success
             setFormData({ 
                 full_name: "", 
                 email: "", 
                 phone: "",
+                property: "",
                 room: "",
-                currencies: "",
+                currency: "NGN",
                 rent: "",
                 move_in: "",
                 lease_end: ""
@@ -81,20 +81,6 @@ function RegisterTenant() {
         }
 
         fetchProperties();
-    }, []);
-
-    // Fetch currencies from backend database
-    useEffect(() => {
-        const fetchCurrencies = async () => {
-            try {
-                const res = await axios.get("http://localhost:5000/api/currencies");
-                setCurrencies(res.data);
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
-
-        fetchCurrencies();
     }, []);
 
     return (
@@ -139,9 +125,9 @@ function RegisterTenant() {
 
                     <label htmlFor="properties">Choose a property: </label>
                     <select 
-                    name="properties" 
+                    name="property" 
                     id="properties"
-                    value={formData.properties}
+                    value={formData.property}
                     onChange={handleChange}
                     required
                     >
@@ -174,11 +160,16 @@ function RegisterTenant() {
                         <div className="small-input">
                             <label htmlFor="rent-amount">Rent Amount:</label>
                             <div className="amount-con">
-                                <select name="currencies" id="currencies">
-                                    <option value={"$"}>$</option>
-                                    <option value={"€"}>€</option>
-                                    <option value={"£"}>£</option>
-                                    <option value={"₦"} selected>₦</option>
+                                <select
+                                name="currency" 
+                                id="currency"
+                                value={formData.currency}
+                                onChange={handleChange}
+                                >
+                                    <option value={"USD"}>$</option>
+                                    <option value={"EUR"}>€</option>
+                                    <option value={"GBP"}>£</option>
+                                    <option value={"NGN"}>₦</option>
                                 </select>
                                 <input 
                                     type="number" 

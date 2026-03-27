@@ -1,11 +1,18 @@
-import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 function TenantDetails() {
     const { id } = useParams();
 
     const [tenant, setTenant] = useState(null);
+
+    const navigate = useNavigate();
+
+    const handleEdit = () => {
+        navigate(`/tenants/edit/${tenant.id}`, { state: tenant });
+    };
 
     const formatDate = (date) => {
         return new Date(date)
@@ -31,6 +38,17 @@ function TenantDetails() {
 
     if (!tenant) return <p className="ten-details-loading">Loading...</p>;
 
+    // Map currency code to symbol
+    const currencyMap = {
+        NGN: "₦",
+        USD: "$",
+        EUR: "€",
+        GBP: "£"
+    };
+
+    // Get symbol for tenant's currency, fallback to code if symbol not found
+    const symbol = currencyMap[tenant.currency] || tenant.currency;
+
     return (
         <div id="details-container">
             <h2>Tenant Details</h2>
@@ -40,19 +58,24 @@ function TenantDetails() {
                     <h1 className="name">{tenant.full_name}</h1>
 
                     <div className="details-btns">
-                        <button className="edit-btn">Edit Tenant</button>
+                        <button 
+                        className="edit-btn" 
+                        onClick={handleEdit}
+                        >
+                            Edit Tenant
+                        </button>
                         <button className="send-email">Send Email</button>
                         <button className="delete-btn">Delete Tenant</button>
                     </div>
                 </div>
 
-                <p>Property: <span>{tenant.property_name}</span></p>
-                <p>Room: <span>{tenant.room_number}</span></p>
-                <p>Email: <span>{tenant.email}</span></p>
-                <p>Phone: <span>{tenant.phone}</span></p>
-                <p>Rent: <span>{tenant.rent_amount}</span></p>
-                <p>Move-in Date: <span>{formatDate(tenant.move_in_date)}</span></p>
-                <p>Lease End: <span>{formatDate(tenant.lease_end)}</span></p>
+                <p><strong>Property:</strong> <span>{tenant.property_name}</span></p>
+                <p><strong>Room:</strong> <span>{tenant.room_number}</span></p>
+                <p><strong>Email:</strong> <span>{tenant.email}</span></p>
+                <p><strong>Phone:</strong> <span>{tenant.phone}</span></p>
+                <p><strong>Rent:</strong> <span>{`${symbol}${tenant.rent_amount}`}</span></p>
+                <p><strong>Move-in Date:</strong> <span>{formatDate(tenant.move_in_date)}</span></p>
+                <p><strong>Lease End:</strong> <span>{formatDate(tenant.lease_end)}</span></p>
             </div>
 
             <div className="document-section">
