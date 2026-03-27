@@ -1,5 +1,5 @@
-import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import axios from "axios";
 
 function TenantDetails() {
@@ -31,6 +31,17 @@ function TenantDetails() {
 
     if (!tenant) return <p className="ten-details-loading">Loading...</p>;
 
+    // Map currency code to symbol
+    const currencyMap = {
+        NGN: "₦",
+        USD: "$",
+        EUR: "€",
+        GBP: "£"
+    };
+
+    // Get symbol for tenant's currency, fallback to code if symbol not found
+    const symbol = currencyMap[tenant.currency] || tenant.currency;
+
     return (
         <div id="details-container">
             <h2>Tenant Details</h2>
@@ -50,7 +61,7 @@ function TenantDetails() {
                 <p>Room: <span>{tenant.room_number}</span></p>
                 <p>Email: <span>{tenant.email}</span></p>
                 <p>Phone: <span>{tenant.phone}</span></p>
-                <p>Rent: <span>{tenant.rent_amount}</span></p>
+                <p>Rent: <span>{`${symbol}${tenant.rent_amount}`}</span></p>
                 <p>Move-in Date: <span>{formatDate(tenant.move_in_date)}</span></p>
                 <p>Lease End: <span>{formatDate(tenant.lease_end)}</span></p>
             </div>

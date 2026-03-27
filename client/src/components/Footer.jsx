@@ -1,4 +1,4 @@
-import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router";
 
 function Footer() {
     return (
@@ -6,10 +6,10 @@ function Footer() {
             <footer id="footer">
                 <h3>Links</h3>
 
-                <HashLink smooth to={"/about"} className="footer-link">About</HashLink>
-                <HashLink smooth to={"/contact"} className="footer-link">Contact</HashLink>
-                <HashLink smooth to={"/privacy"} className="footer-link">Privacy</HashLink>
-                <HashLink smooth to={"/terms"} className="footer-link">Terms</HashLink>
+                <Link to={"/about"} className="footer-link">About</Link>
+                <Link to={"/contact"} className="footer-link">Contact</Link>
+                <Link to={"/privacy"} className="footer-link">Privacy</Link>
+                <Link to={"/terms"} className="footer-link">Terms</Link>
             </footer>
         </div>
     )
