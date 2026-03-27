@@ -422,6 +422,10 @@ button.send-email {
     padding: 1rem 0;
 }
 
+.info-section p span {
+    margin-left: 0.5rem;
+}
+
 .docs-header {
     margin-bottom: 1rem;
 }

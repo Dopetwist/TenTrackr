@@ -57,13 +57,13 @@ function TenantDetails() {
                     </div>
                 </div>
 
-                <p>Property: <span>{tenant.property_name}</span></p>
-                <p>Room: <span>{tenant.room_number}</span></p>
-                <p>Email: <span>{tenant.email}</span></p>
-                <p>Phone: <span>{tenant.phone}</span></p>
-                <p>Rent: <span>{`${symbol}${tenant.rent_amount}`}</span></p>
-                <p>Move-in Date: <span>{formatDate(tenant.move_in_date)}</span></p>
-                <p>Lease End: <span>{formatDate(tenant.lease_end)}</span></p>
+                <p><strong>Property:</strong> <span>{tenant.property_name}</span></p>
+                <p><strong>Room:</strong> <span>{tenant.room_number}</span></p>
+                <p><strong>Email:</strong> <span>{tenant.email}</span></p>
+                <p><strong>Phone:</strong> <span>{tenant.phone}</span></p>
+                <p><strong>Rent:</strong> <span>{`${symbol}${tenant.rent_amount}`}</span></p>
+                <p><strong>Move-in Date:</strong> <span>{formatDate(tenant.move_in_date)}</span></p>
+                <p><strong>Lease End:</strong> <span>{formatDate(tenant.lease_end)}</span></p>
             </div>
 
             <div className="document-section">
