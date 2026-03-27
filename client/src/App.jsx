@@ -7,12 +7,11 @@ import RegisterTenant from './pages/RegisterTenant';
 import EmailPage from './pages/EmailPage';
 import TenantDetails from "./pages/TenantDetails";
 import Settings from "./pages/Settings";
+import EditTenant from "./pages/EditTenant";
 import './index.css';
 import AppLayout from "./components/AppLayout";
-import { useParams } from "react-router";
 
 function App() {
-  const { id } = useParams();
 
   return (
     <>
@@ -26,6 +25,7 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/tenants' element={<Tenants />} />
               <Route path='/tenants/:id' element={<TenantDetails />} />
+              <Route path='/tenants/edit/:id' element={<EditTenant />} />
               <Route path='/properties' element={<PropertyAccordion />} />
               <Route path='/register' element={<RegisterTenant />} />
               <Route path='/emails' element={<EmailPage />} />

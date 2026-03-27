@@ -440,6 +440,93 @@ button.send-email {
     background-color: var(--accent-color);
 }
 
+.edit-container {
+    width: auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 2rem;
+}
+
+.edit-container h2 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.edit-form {
+    width: 50%;
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--sub-text-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form .edit-form-sub {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1rem solid var(--sub-text-color);
+}
+
+.edit-form-sub input,
+.edit-form-sub select {
+    width: 70%;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.edit-form-btns {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.edit-form-btns button {
+    margin-right: 1rem;
+    padding: 0.3rem 2rem;
+    border-radius: 0.3rem;
+}
+
+.edit-form-btns button:hover {
+    cursor: pointer;
+}
+
+.edit-form-btns #saveButton {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.edit-form-btns #cancelButton {
+    background-color: var(--background-color);
+    border: 0.05rem solid var(--sub-text-color);
+}
+
+.rent-con {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rent-con input {
+    width: 100%;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--sub-text-color);
+}
+
+.rent-con #currency {
+    width: fit-content;
+}
+
 #register-section {
     min-height: 100vh;
     display: flex;

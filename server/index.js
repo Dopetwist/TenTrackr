@@ -88,6 +88,11 @@ app.post("/api/tenants", async (req, res) => {
 });
 
 // edit a new tenant
+app.get("/api/tenants/:id/edit", async (req, res) => {
+
+});
+
+// edit a new tenant
 app.put("/api/tenants/:id", async (req, res) => {
 
 });
@@ -96,16 +101,6 @@ app.put("/api/tenants/:id", async (req, res) => {
 app.delete("/api/tenants/:id", async (req, res) => {
 
 });
-
-// Get Currencies
-/* app.get("/api/currencies", async (req, res) => {
-    try {
-        const result = await db.query("SELECT * FROM tenant_app.currencies");
-        res.json(result.rows);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}); */
 
 
 // Properties endpoints

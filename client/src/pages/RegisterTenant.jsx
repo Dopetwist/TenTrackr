@@ -41,7 +41,7 @@ function RegisterTenant() {
                 type: "success"
             });
 
-            // Clear form
+            // Clear form on success
             setFormData({ 
                 full_name: "", 
                 email: "", 
@@ -82,20 +82,6 @@ function RegisterTenant() {
 
         fetchProperties();
     }, []);
-
-    // Fetch currencies from backend database
-    /* useEffect(() => {
-        const fetchCurrencies = async () => {
-            try {
-                const res = await axios.get("http://localhost:5000/api/currencies");
-                setCurrencies(res.data);
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
-
-        fetchCurrencies();
-    }, []); */
 
     return (
         <div id="register-section">

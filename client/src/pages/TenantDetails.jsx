@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 function TenantDetails() {
     const { id } = useParams();
 
     const [tenant, setTenant] = useState(null);
+
+    const navigate = useNavigate();
+
+    const handleEdit = () => {
+        navigate(`/tenants/edit/${tenant.id}`, { state: tenant });
+    };
 
     const formatDate = (date) => {
         return new Date(date)
@@ -51,7 +58,12 @@ function TenantDetails() {
                     <h1 className="name">{tenant.full_name}</h1>
 
                     <div className="details-btns">
-                        <button className="edit-btn">Edit Tenant</button>
+                        <button 
+                        className="edit-btn" 
+                        onClick={handleEdit}
+                        >
+                            Edit Tenant
+                        </button>
                         <button className="send-email">Send Email</button>
                         <button className="delete-btn">Delete Tenant</button>
                     </div>
