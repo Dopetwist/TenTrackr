@@ -10,6 +10,8 @@ function EditTenant() {
 
     const [ properties, setProperties ] = useState([]);
 
+    const [ toast, setToast ] = useState(null); // toast state
+
     const [formData, setFormData] = useState({
         full_name: "",
         email: "",
@@ -21,6 +23,46 @@ function EditTenant() {
         move_in: "",
         lease_end: ""
     });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.put("http://localhost:5000/api/tenants/edit/:id", formData);
+
+            // Show success toast
+            setToast({
+                message: "Details updated successfully!",
+                type: "success"
+            });
+
+            // Clear form on success
+            setFormData({ 
+                full_name: "", 
+                email: "", 
+                phone: "",
+                property: "",
+                room: "",
+                currency: "NGN",
+                rent: "",
+                move_in: "",
+                lease_end: ""
+            });
+
+            // Redirect to tenant details page after short delay
+            setTimeout(() => {
+                navigate(`/tenants/${res.data.id}`);
+            }, 2000);
+
+        } catch (err) {
+            // Show error toast
+            setToast({
+                message: err.response?.data?.error || "Something went wrong",
+                type: "error"
+            });
+            console.error(err.response?.data || err.message);
+        }
+    };
 
     const handleChange = (e) => {
         setFormData({
@@ -57,13 +99,12 @@ function EditTenant() {
         fetchProperties();
     }, []);
 
-    console.log("Form Data:", formData); // Debugging log
 
     return (
         <div className="edit-container">
             <h2>Edit Tenant</h2>
 
-            <form className="edit-form">
+            <form onSubmit={handleSubmit} className="edit-form">
                 <div className="edit-form-sub">
                     <label> Name: </label>
                     <input 
