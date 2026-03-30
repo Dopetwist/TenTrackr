@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 function EditTenant() {
-    const { id } = useParams();
+   /*  const { id } = useParams(); */
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -33,18 +33,12 @@ function EditTenant() {
         if (location.state) {
             const tenant = location.state;
 
-            const formatDate = (date) => {
-                if (!date) return "";
-                return date.split("T")[0]; // Extract YYYY-MM-DD from ISO string
-            };
-
             setFormData({
                 ...tenant,
-                move_in: formatDate(tenant.move_in),
-                lease_end: formatDate(tenant.lease_end),
                 property: tenant.property_id, // Tenant property_id field
                 room: tenant.room_number,
-                rent: tenant.rent_amount
+                rent: tenant.rent_amount,
+                move_in: tenant.move_in_date
             });
         }
     }, [location.state]);

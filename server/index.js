@@ -2,6 +2,7 @@ import express from "express";
 import env from "dotenv";
 import cors from "cors";
 import pkg from "pg";
+import pg from "pg";
 
 const { Pool } = pkg;
 
@@ -9,6 +10,9 @@ env.config();
 
 const app = express();
 const port = 5000;
+
+// Prevent backend date timezone shifts
+pg.types.setTypeParser(1082, (val) => val);
 
 // Middlewares
 app.use(cors());
