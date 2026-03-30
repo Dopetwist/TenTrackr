@@ -2,6 +2,7 @@ import express from "express";
 import env from "dotenv";
 import cors from "cors";
 import pkg from "pg";
+import pg from "pg";
 
 const { Pool } = pkg;
 
@@ -9,6 +10,9 @@ env.config();
 
 const app = express();
 const port = 5000;
+
+// Prevent backend date timezone shifts
+pg.types.setTypeParser(1082, (val) => val);
 
 // Middlewares
 app.use(cors());
@@ -88,12 +92,7 @@ app.post("/api/tenants", async (req, res) => {
 });
 
 // edit a new tenant
-app.get("/api/tenants/:id/edit", async (req, res) => {
-
-});
-
-// edit a new tenant
-app.put("/api/tenants/:id", async (req, res) => {
+app.put("/api/tenants/edit/:id", async (req, res) => {
 
 });
 
