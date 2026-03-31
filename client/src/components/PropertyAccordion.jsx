@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import Modal from "./Modal";
 
 function PropertyAccordion() {
 
     const [ expandedProperty, setExpandedProperty ] = useState(null);
     const [ properties, setProperties ] = useState([]);
     const [ tenants, setTenants ] = useState([]);
+    const [ showModal, setShowModal ] = useState(false);
+    const [ selectedTenantId, setSelectedTenantId ] = useState(null);
+    const [ isDeleting, setIsDeleting ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -46,6 +50,27 @@ function PropertyAccordion() {
         fetchTenants();
     }, []);
 
+    // Delete tenant from database
+    const handleDelete = async () => {
+        setIsDeleting(true);
+
+        try {
+            await axios.delete(`http://localhost:5000/api/tenants/${selectedTenantId}`);
+
+            // Remove from UI immediately
+            setTenants((prev) => 
+                prev.filter((tenant) => tenant.id !== selectedTenantId)
+            );
+
+            setShowModal(false);
+            setSelectedTenantId(null);
+        } catch (error) {
+            console.error("Error deleting tenant:", error.response?.data || error.message);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
 
     return (
         <div id="property-container">
@@ -81,7 +106,15 @@ function PropertyAccordion() {
                                                     >
                                                         View Details
                                                     </button>
-                                                    <button className="delete-btn">Delete</button>
+                                                    <button 
+                                                    className="delete-btn"
+                                                    onClick={() => {
+                                                        setSelectedTenantId(tenant.id);
+                                                        setShowModal(true);
+                                                    }}
+                                                    >
+                                                        Delete
+                                                    </button>
                                                 </div>
                                             </div>
                                         ))
@@ -91,6 +124,17 @@ function PropertyAccordion() {
                         </div>
                     ))
             )}
+
+            <Modal
+                isOpen={showModal}
+                title="Delete Tenant"
+                message="Are you sure you want to delete this tenant? This action cannot be undone."
+                onConfirm={handleDelete}
+                onCancel={() => setShowModal(false)}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isLoading={isDeleting}
+            />
             
         </div>
     )
