@@ -513,8 +513,8 @@ button.send-email {
 .wait {
     width: 30%;
     height: 20%;
-    background-color: #dc3545;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -523,8 +523,17 @@ button.send-email {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 0.1rem solid var(--sub-text-color);
     border-radius: 0.5rem;
 }
+
+/* .overlay.dark {
+    min-height: 100vh;
+    background-color: #1E293B;
+    background: linear-gradient(rgba(0, 0, 0, 0.5));
+    position: absolute;
+    z-index: 99;
+} */
 
 .rent-con {
     width: 70%;

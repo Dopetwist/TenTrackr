@@ -31,6 +31,9 @@ function EditTenant() {
         e.preventDefault();
 
         try {
+            // Activate 'Please wait...' modal
+            setClicked(true);
+
             await axios.put(`http://localhost:5000/api/tenants/edit/${id}`, formData);
 
             // Show success toast
@@ -58,6 +61,9 @@ function EditTenant() {
             }, 2000);
 
         } catch (err) {
+            // Deactivate 'Please wait...' modal
+            setClicked(false);
+
             // Show error toast
             setToast({
                 message: err.response?.data?.error || "Something went wrong",
@@ -74,11 +80,6 @@ function EditTenant() {
             [e.target.name]: e.target.value
         });
     };
-
-    // function to handle save button click state
-    const handleClick = () => {
-        setClicked(true);
-    }
 
     useEffect(() => {
         if (location.state) {
@@ -111,6 +112,7 @@ function EditTenant() {
 
     return (
         <div className="edit-container">
+            {/* <div className={`overlay ${clicked ? "dark" : ""}`}></div> */}
             {clicked && (
                 <div className="wait">
                     <p>Please wait...</p>
@@ -221,7 +223,6 @@ function EditTenant() {
                     <button 
                     type="submit" 
                     id="saveButton"
-                    onClick={handleClick}
                     >
                         Save
                     </button>

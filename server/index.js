@@ -123,7 +123,20 @@ app.put("/api/tenants/edit/:id", async (req, res) => {
 
 // delete a tenant
 app.delete("/api/tenants/:id", async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        const result = await db.query("DELETE FROM tenant_app.tenants WHERE tenant_app.tenants.id = $1", [id]);
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ message: "Tenant not found!" });
+        }
+
+        res.status(200).json({ message: "Tenant deleted successfully!" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Failed to delete tenant" });
+    }
 });
 
 

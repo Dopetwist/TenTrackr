@@ -46,6 +46,22 @@ function PropertyAccordion() {
         fetchTenants();
     }, []);
 
+    // Delete tenant from database
+    const deleteTenant = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this tenant?");
+
+        if (!confirmDelete) return;
+
+        try {
+            await axios.delete(`http://localhost:5000/api/tenants/${id}`);
+
+            // Remove from UI immediately
+            setTenants((prev) => prev.filter((tenant) => tenant.id !== id));
+        } catch (error) {
+            console.error("Error deleting tenant:", error.response?.data || error.message);
+        }
+    };
+
 
     return (
         <div id="property-container">
@@ -81,7 +97,12 @@ function PropertyAccordion() {
                                                     >
                                                         View Details
                                                     </button>
-                                                    <button className="delete-btn">Delete</button>
+                                                    <button 
+                                                    className="delete-btn"
+                                                    onClick={() => deleteTenant(tenant.id)}
+                                                    >
+                                                        Delete
+                                                    </button>
                                                 </div>
                                             </div>
                                         ))
