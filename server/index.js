@@ -9,7 +9,7 @@ const { Pool } = pkg;
 env.config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Prevent backend date timezone shifts
 pg.types.setTypeParser(1082, (val) => val);
@@ -91,7 +91,7 @@ app.post("/api/tenants", async (req, res) => {
     }
 });
 
-// edit a new tenant
+// edit a tenant
 app.put("/api/tenants/edit/:id", async (req, res) => {
     const { id } = req.params;
 
@@ -113,8 +113,11 @@ app.put("/api/tenants/edit/:id", async (req, res) => {
             rent_amount = $6, move_in_date = $7, lease_end = $8, currency = $9
             WHERE tenant_app.tenants.id = $10
             `, [full_name, email, phone, property, room, rent, move_in, lease_end, currency, id]);
+
+        res.status(200).json({ message: "Tenant updated successfully" });
     } catch (error) {
         console.error(error.message);
+        res.status(500).json({ error: "Failed to update tenant" });
     }
 });
 

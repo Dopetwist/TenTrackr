@@ -73,7 +73,7 @@ function TenantDetails() {
                 <p><strong>Room:</strong> <span>{tenant.room_number}</span></p>
                 <p><strong>Email:</strong> <span>{tenant.email}</span></p>
                 <p><strong>Phone:</strong> <span>{tenant.phone}</span></p>
-                <p><strong>Rent:</strong> <span>{`${symbol}${tenant.rent_amount}`}</span></p>
+                <p><strong>Rent:</strong> <span>{tenant.rent_amount ? symbol : ""}{tenant.rent_amount}</span></p>
                 <p><strong>Move-in Date:</strong> <span>{formatDate(tenant.move_in_date)}</span></p>
                 <p><strong>Lease End:</strong> <span>{formatDate(tenant.lease_end)}</span></p>
             </div>

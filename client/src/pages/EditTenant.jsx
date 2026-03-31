@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
+import Toast from "../components/Toast";
 
 function EditTenant() {
     const { id } = useParams();
@@ -28,11 +29,11 @@ function EditTenant() {
         e.preventDefault();
 
         try {
-            const res = await axios.put("http://localhost:5000/api/tenants/edit/:id", formData);
+            await axios.put(`http://localhost:5000/api/tenants/edit/${id}`, formData);
 
             // Show success toast
             setToast({
-                message: "Details updated successfully!",
+                message: "Tenant updated successfully",
                 type: "success"
             });
 
@@ -51,7 +52,7 @@ function EditTenant() {
 
             // Redirect to tenant details page after short delay
             setTimeout(() => {
-                navigate(`/tenants/${res.data.id}`);
+                navigate(`/tenants/${id}`);
             }, 2000);
 
         } catch (err) {
@@ -67,6 +68,7 @@ function EditTenant() {
     const handleChange = (e) => {
         setFormData({
             ...formData,
+            currency: "NGN",
             [e.target.name]: e.target.value
         });
     };
@@ -213,6 +215,15 @@ function EditTenant() {
                     </button>
                 </div>
             </form>
+
+            {/* Render Toast */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
         </div>
     )
 }
