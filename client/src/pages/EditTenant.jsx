@@ -13,6 +13,8 @@ function EditTenant() {
 
     const [ toast, setToast ] = useState(null); // toast state
 
+    const [ clicked, setClicked ] = useState(false);
+
     const [formData, setFormData] = useState({
         full_name: "",
         email: "",
@@ -73,6 +75,11 @@ function EditTenant() {
         });
     };
 
+    // function to handle save button click state
+    const handleClick = () => {
+        setClicked(true);
+    }
+
     useEffect(() => {
         if (location.state) {
             const tenant = location.state;
@@ -104,6 +111,12 @@ function EditTenant() {
 
     return (
         <div className="edit-container">
+            {clicked && (
+                <div className="wait">
+                    <p>Please wait...</p>
+                </div>
+            )}
+
             <h2>Edit Tenant</h2>
 
             <form onSubmit={handleSubmit} className="edit-form">
@@ -205,7 +218,14 @@ function EditTenant() {
                 </div>
 
                 <div className="edit-form-btns">
-                    <button type="submit" id="saveButton">Save</button>
+                    <button 
+                    type="submit" 
+                    id="saveButton"
+                    onClick={handleClick}
+                    >
+                        Save
+                    </button>
+
                     <button 
                     type="button"
                     id="cancelButton"
