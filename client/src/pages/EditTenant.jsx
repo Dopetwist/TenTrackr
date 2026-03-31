@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
+import Toast from "../components/Toast";
 
 function EditTenant() {
-   /*  const { id } = useParams(); */
+    const { id } = useParams();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -12,13 +13,15 @@ function EditTenant() {
 
     const [ toast, setToast ] = useState(null); // toast state
 
+    const [ clicked, setClicked ] = useState(false);
+
     const [formData, setFormData] = useState({
         full_name: "",
         email: "",
         phone: "",
         property: "",
         room: "",
-        currency: "",
+        currency: "NGN",
         rent: "",
         move_in: "",
         lease_end: ""
@@ -28,11 +31,11 @@ function EditTenant() {
         e.preventDefault();
 
         try {
-            const res = await axios.put("http://localhost:5000/api/tenants/edit/:id", formData);
+            await axios.put(`http://localhost:5000/api/tenants/edit/${id}`, formData);
 
             // Show success toast
             setToast({
-                message: "Details updated successfully!",
+                message: "Tenant updated successfully",
                 type: "success"
             });
 
@@ -51,7 +54,7 @@ function EditTenant() {
 
             // Redirect to tenant details page after short delay
             setTimeout(() => {
-                navigate(`/tenants/${res.data.id}`);
+                navigate(`/tenants/${id}`);
             }, 2000);
 
         } catch (err) {
@@ -67,9 +70,15 @@ function EditTenant() {
     const handleChange = (e) => {
         setFormData({
             ...formData,
+            currency: "NGN",
             [e.target.name]: e.target.value
         });
     };
+
+    // function to handle save button click state
+    const handleClick = () => {
+        setClicked(true);
+    }
 
     useEffect(() => {
         if (location.state) {
@@ -102,6 +111,12 @@ function EditTenant() {
 
     return (
         <div className="edit-container">
+            {clicked && (
+                <div className="wait">
+                    <p>Please wait...</p>
+                </div>
+            )}
+
             <h2>Edit Tenant</h2>
 
             <form onSubmit={handleSubmit} className="edit-form">
@@ -203,16 +218,32 @@ function EditTenant() {
                 </div>
 
                 <div className="edit-form-btns">
-                    <button type="submit" id="saveButton">Save</button>
+                    <button 
+                    type="submit" 
+                    id="saveButton"
+                    onClick={handleClick}
+                    >
+                        Save
+                    </button>
+
                     <button 
                     type="button"
                     id="cancelButton"
-                    onClick={() => navigate(`/tenants/${formData.id}`)}
+                    onClick={() => navigate(`/tenants/${id}`)}
                     >
                         Cancel
                     </button>
                 </div>
             </form>
+
+            {/* Render Toast */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
         </div>
     )
 }
