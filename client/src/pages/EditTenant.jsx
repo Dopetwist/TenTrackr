@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 function EditTenant() {
-   /*  const { id } = useParams(); */
+    const { id } = useParams();
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ function EditTenant() {
         phone: "",
         property: "",
         room: "",
-        currency: "",
+        currency: "NGN",
         rent: "",
         move_in: "",
         lease_end: ""
@@ -207,7 +207,7 @@ function EditTenant() {
                     <button 
                     type="button"
                     id="cancelButton"
-                    onClick={() => navigate(`/tenants/${formData.id}`)}
+                    onClick={() => navigate(`/tenants/${id}`)}
                     >
                         Cancel
                     </button>

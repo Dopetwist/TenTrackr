@@ -93,7 +93,29 @@ app.post("/api/tenants", async (req, res) => {
 
 // edit a new tenant
 app.put("/api/tenants/edit/:id", async (req, res) => {
+    const { id } = req.params;
 
+    const {
+        full_name,
+        email,
+        phone,
+        property,
+        room,
+        currency,
+        rent,
+        move_in,
+        lease_end
+    } = req.body;
+
+    try {
+        await db.query(`UPDATE tenant_app.tenants SET 
+            full_name = $1, email = $2, phone = $3, property_id = $4, room_number = $5, 
+            rent_amount = $6, move_in_date = $7, lease_end = $8, currency = $9
+            WHERE tenant_app.tenants.id = $10
+            `, [full_name, email, phone, property, room, rent, move_in, lease_end, currency, id]);
+    } catch (error) {
+        console.error(error.message);
+    }
 });
 
 // delete a tenant

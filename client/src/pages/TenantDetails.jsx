@@ -11,7 +11,7 @@ function TenantDetails() {
     const navigate = useNavigate();
 
     const handleEdit = () => {
-        navigate(`/tenants/edit/${tenant.id}`, { state: tenant });
+        navigate(`/tenants/edit/${id}`, { state: tenant });
     };
 
     const formatDate = (date) => {
